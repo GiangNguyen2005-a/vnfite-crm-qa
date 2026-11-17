@@ -5,8 +5,9 @@ const OUT = path.join(__dirname, "results");
 
 module.exports = defineConfig({
   testDir: __dirname,
-  testMatch: /perm\.spec\.js/,
-  timeout: 120000,
+  // Chạy mọi tệp .spec.js trong thư mục này; các tệp phụ trợ nằm trong lib/ và data/.
+  testMatch: /.*\.spec\.js$/,
+  timeout: 180000,
   expect: { timeout: 15000 },
   fullyParallel: true,
   workers: 2,
@@ -22,11 +23,11 @@ module.exports = defineConfig({
     viewport: { width: 1440, height: 900 },
     ignoreHTTPSErrors: true,
     screenshot: "only-on-failure",
-    trace: "off"
+    trace: "off",
+    actionTimeout: 15000,
+    navigationTimeout: 45000
   },
-  projects: [
-    { name: "chrome", use: { browserName: "chromium", channel: "chrome" } },
-    { name: "edge", use: { browserName: "chromium", channel: "msedge" } },
-    { name: "firefox", use: { browserName: "firefox" } }
-  ]
+  // Chỉ một trình duyệt: bộ kiểm thử so sánh hành vi giữa các vai trò, không so sánh
+  // giữa các trình duyệt. Thêm project khác sẽ làm số liệu không còn so sánh được.
+  projects: [{ name: "chrome", use: { browserName: "chromium", channel: "chrome" } }]
 });

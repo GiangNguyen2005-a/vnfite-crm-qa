@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "note": "Danh sách màn hình kiểm tra hiển thị. maxLoadMs là ngưỡng cảnh báo đặt theo số đo trên môi trường kiểm thử, không phải cam kết hiệu năng.",
+    "measure": "loadMs tính từ lúc bắt đầu điều hướng tới khi phần tử chờ hiện ra; apiCalls đếm lời gọi tới cổng 2345."
+  },
+  "role": "sale",
+  "pages": [
+    { "id": "dashboard", "name": "Tổng quan", "path": "/dashboard", "waitFor": "text=Tổng quan", "maxLoadMs": 6000, "requiredText": ["Tổng quan"] },
+    { "id": "customers", "name": "Danh sách khách hàng", "path": "/khach-hang", "waitFor": "table tbody tr", "maxLoadMs": 15000, "requiredText": [] },
+    { "id": "my_customers", "name": "Khách hàng của tôi", "path": "/cskh/khach-hang-cua-toi", "waitFor": "text=Khách hàng của tôi", "maxLoadMs": 6000, "requiredText": ["Khách hàng của tôi"] },
+    { "id": "receive", "name": "Nhận khách hàng", "path": "/cskh/nhan-khach-hang", "waitFor": "table tbody tr", "maxLoadMs": 30000, "requiredText": [] },
+    { "id": "calls", "name": "Gọi điện", "path": "/goi-dien", "waitFor": "text=Gọi điện", "maxLoadMs": 6000, "requiredText": ["Gọi điện"] },
+    { "id": "commission", "name": "Hoa hồng", "path": "/hoa-hong", "waitFor": "text=Hoa hồng", "maxLoadMs": 6000, "requiredText": ["Hoa hồng"] },
+    { "id": "requests", "name": "Yêu cầu nhận khách", "path": "/yeu-cau-nhan-khach", "waitFor": "text=Yêu cầu nhận khách", "maxLoadMs": 6000, "requiredText": ["Yêu cầu"] },
+    { "id": "hotline", "name": "Cấu hình tổng đài", "path": "/tong-dai", "waitFor": "text=Tổng đài", "maxLoadMs": 6000, "requiredText": ["Tổng đài"] },
+    { "id": "kpi", "name": "Quản lý KPI", "path": "/hrm/quan-ly-kpi", "waitFor": "text=KPI", "maxLoadMs": 6000, "requiredText": ["KPI"] }
+  ]
+}

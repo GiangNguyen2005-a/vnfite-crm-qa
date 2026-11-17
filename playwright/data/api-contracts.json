@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "note": "Hợp đồng dữ liệu của các endpoint đọc. Chỉ khai báo trường đã quan sát được trên môi trường kiểm thử; trường chưa xác nhận để null thay vì đoán.",
+    "shapeNote": "shape = {tên trường: kiểu}, kiểu nhận: string, number, boolean, array, object, any"
+  },
+  "contracts": [
+    {
+      "id": "API-C01",
+      "name": "Quyền của tài khoản hiện tại",
+      "role": "sale",
+      "method": "GET",
+      "path": "/permissions/me",
+      "expectStatus": 200,
+      "shape": null,
+      "maxMs": 3000,
+      "note": "Endpoint chạy ngầm ở mọi lần chuyển màn hình; đo thời gian phản hồi ở đây chỉ để phát hiện chậm bất thường trên môi trường kiểm thử."
+    },
+    {
+      "id": "API-C02",
+      "name": "Thông tin người đăng nhập",
+      "role": "sale",
+      "method": "GET",
+      "path": "/user/getUserInfo",
+      "expectStatus": 200,
+      "shape": null,
+      "maxMs": 3000
+    },
+    {
+      "id": "API-C03",
+      "name": "Danh sách khách hàng — trang 1",
+      "role": "sale",
+      "method": "GET",
+      "path": "/customer/all",
+      "query": { "page": 1, "limit": 20, "app_code": "vnfite" },
+      "expectStatus": 200,
+      "shape": { "data": "array", "pagination": "object" },
+      "paginationShape": { "total": "number" },
+      "maxMs": 5000,
+      "note": "Cấu trúc này đã quan sát được: data là mảng bản ghi, pagination.total là tổng số bản ghi trong phạm vi của vai trò."
+    },
+    {
+      "id": "API-C04",
+      "name": "Danh sách khách hàng — lọc theo trạng thái",
+      "role": "sale",
+      "method": "GET",
+      "path": "/customer/all",
+      "query": { "page": 1, "limit": 20, "app_code": "vnfite", "status": "registered" },
+      "expectStatus": 200,
+      "shape": { "data": "array" },
+      "allRowsField": { "status": "registered" },
+      "maxMs": 5000,
+      "note": "allRowsField kiểm mọi bản ghi trả về đều có trạng thái đúng bộ lọc, không kiểm số lượng."
+    },
+    {
+      "id": "API-C05",
+      "name": "Tìm khách hàng theo số điện thoại",
+      "role": "sale",
+      "method": "GET",
+      "path": "/customer/all",
+      "query": { "page": 1, "limit": 20, "app_code": "vnfite", "search": "0342693675" },
+      "expectStatus": 200,
+      "shape": { "data": "array" },
+      "maxMs": 5000
+    },
+    {
+      "id": "API-C06",
+      "name": "Danh sách chi nhánh",
+      "role": "admin",
+      "method": "GET",
+      "path": "/branch/getAll",
+      "expectStatus": 200,
+      "shape": null,
+      "maxMs": 3000
+    },
+    {
+      "id": "API-C07",
+      "name": "Danh sách nhân sự CRM",
+      "role": "admin",
+      "method": "GET",
+      "path": "/user/getUsers",
+      "query": { "page": 1, "limit": 200, "module": "crm" },
+      "expectStatus": 200,
+      "shape": null,
+      "maxMs": 6000
+    },
+    {
+      "id": "API-C08",
+      "name": "Số thông báo chưa đọc",
+      "role": "sale",
+      "method": "GET",
+      "path": "/notification/unread-count",
+      "expectStatus": 200,
+      "shape": null,
+      "maxMs": 3000
+    },
+    {
+      "id": "API-C09",
+      "name": "Từ chối khi không có token",
+      "role": null,
+      "method": "GET",
+      "path": "/customer/all",
+      "query": { "page": 1, "limit": 5 },
+      "expectStatus": 401,
+      "shape": null,
+      "maxMs": 3000,
+      "note": "Ca âm: phải bị chặn ở tầng API, không chỉ chặn ở giao diện."
+    },
+    {
+      "id": "API-C10",
+      "name": "Từ chối khi token sai định dạng",
+      "role": null,
+      "method": "GET",
+      "path": "/customer/all",
+      "query": { "page": 1, "limit": 5 },
+      "token": "sai-dinh-dang",
+      "expectStatus": 401,
+      "shape": null,
+      "maxMs": 3000,
+      "note": "Token rác không được rơi vào nhánh 500; mọi trường hợp không xác thực phải là 401."
+    },
+    {
+      "id": "API-C11",
+      "name": "Endpoint không tồn tại",
+      "role": "admin",
+      "method": "GET",
+      "path": "/customer-call/sip-credentials",
+      "expectStatus": 404,
+      "shape": null,
+      "maxMs": 3000
+    }
+  ]
+}

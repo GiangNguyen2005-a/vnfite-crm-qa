@@ -29,3 +29,13 @@ cookies*.json
 .vscode/
 .idea/
 *.log
+
+# Kết quả sinh ra khi chạy các bộ kiểm thử mới
+playwright/results/*.jsonl
+playwright/results/smoke.json
+playwright/results/report.json
+playwright/results/html/
+playwright/results/shots/
+playwright/results/screenshots/
+jmeter/mixed-result.jtl
+jmeter/*.jtl.tmp

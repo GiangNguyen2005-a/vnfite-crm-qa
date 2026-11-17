@@ -8,7 +8,9 @@ const { test, expect } = require("@playwright/test");
 const fs = require("fs");
 const path = require("path");
 
-const TOKENS = require("./qa_perm_tokens.json");
+const { tokens } = require("./lib/env");
+// Đọc qua lib/env: thiếu tệp thì trả {} để các ca bỏ qua, không làm hỏng cả bộ.
+const TOKENS = tokens();
 const BASE_WEB = "http://localhost:5173";
 const BASE_API = "http://localhost:2345";
 const CID = "082a18e5-f6a2-475c-b499-6f01fab64bc5";
@@ -18,7 +20,7 @@ const JSONL = path.join(OUT, "perm-results.jsonl");
 fs.mkdirSync(path.join(OUT, "shots"), { recursive: true });
 if (!fs.existsSync(JSONL)) fs.writeFileSync(JSONL, "");
 
-const tok = (role) => TOKENS[role].token;
+const tok = (role) => (TOKENS[role] || {}).token;
 
 async function api(role, method, url, body, rawToken) {
   const headers = { "Content-Type": "application/json" };
@@ -78,6 +80,7 @@ const MENU_CASES = [
 
 for (const c of MENU_CASES) {
   test(`${c.tc} Menu của ${c.role}`, async ({ page }, testInfo) => {
+    test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
     await login(page, c.role);
     const menu = await expandMenu(page);
     const missing = c.must.filter((m) => !menu.includes(m));
@@ -89,6 +92,7 @@ for (const c of MENU_CASES) {
 
 /* ---------------- Nhóm 2: Truy cập trực tiếp ---------------- */
 test("TC_26 Sale gõ thẳng đường dẫn Khách hàng toàn công ty", async ({ page }, testInfo) => {
+  test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
   await login(page, "sale");
   await page.goto(BASE_WEB + "/khach-hang", { waitUntil: "domcontentloaded" });
   await page.waitForTimeout(4000);
@@ -107,6 +111,7 @@ test("TC_26 Sale gõ thẳng đường dẫn Khách hàng toàn công ty", async
 });
 
 test("TC_27 Sale gõ thẳng đường dẫn CTV và Đại lý", async ({ page }, testInfo) => {
+  test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
   await login(page, "sale");
   await page.goto(BASE_WEB + "/dai-ly", { waitUntil: "domcontentloaded" });
   await page.waitForTimeout(4000);
@@ -118,6 +123,7 @@ test("TC_27 Sale gõ thẳng đường dẫn CTV và Đại lý", async ({ page 
 });
 
 test("TC_33 Quản trị hệ thống gõ thẳng đường dẫn Khách hàng", async ({ page }, testInfo) => {
+  test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
   await login(page, "admin");
   await page.goto(BASE_WEB + "/khach-hang", { waitUntil: "domcontentloaded" });
   await page.waitForTimeout(4000);
@@ -129,6 +135,7 @@ test("TC_33 Quản trị hệ thống gõ thẳng đường dẫn Khách hàng",
 });
 
 test("TC_36 Sale mở chi tiết khách ngoài phạm vi bằng URL", async ({ page }, testInfo) => {
+  test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
   await login(page, "sale");
   const res = await api("sale", "GET", "/customer/all?page=1&limit=1&app_code=vnfite");
   const own = (res.json && res.json.data) || [];
@@ -153,6 +160,7 @@ test("TC_36 Sale mở chi tiết khách ngoài phạm vi bằng URL", async ({ p
 });
 
 test("TC_37 Mở chi tiết khách có mã không tồn tại", async ({ page }, testInfo) => {
+  test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
   await login(page, "sale");
   await page.goto(BASE_WEB + "/khach-hang/khong-ton-tai-123", { waitUntil: "domcontentloaded" });
   await page.waitForTimeout(4000);
@@ -163,6 +171,7 @@ test("TC_37 Mở chi tiết khách có mã không tồn tại", async ({ page },
 });
 
 test("TC_38 Gõ đường dẫn không có trong hệ thống", async ({ page }, testInfo) => {
+  test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
   await login(page, "sale");
   await page.goto(BASE_WEB + "/abc-xyz", { waitUntil: "domcontentloaded" });
   await page.waitForTimeout(3500);
@@ -187,6 +196,7 @@ const API_CASES = [
 
 for (const c of API_CASES) {
   test(`${c.tc} ${c.desc}`, async ({ page }, testInfo) => {
+    test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
     const res = await api(c.role, c.method, c.url, c.body, c.token === null ? null : c.token || undefined);
     const ok = c.expect.includes(res.status);
     const msg = (res.json && (res.json.message || res.json.errorCode)) || res.text.slice(0, 80);
@@ -204,6 +214,7 @@ async function scopeCheck(role, url) {
 }
 
 test("TC_55 Sale chỉ thấy khách của mình", async ({}, testInfo) => {
+  test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
   const s = await scopeCheck("sale", "/customer/all?page=1&limit=50&app_code=vnfite");
   const ownOnly = s.status === 200 && s.total !== null && s.total <= 50 || s.status === 200;
   const rec = { case: "scope", role: "sale", ...s, note: "toàn bộ bản ghi phải thuộc Sale đăng nhập" };
@@ -211,6 +222,7 @@ test("TC_55 Sale chỉ thấy khách của mình", async ({}, testInfo) => {
 });
 
 test("TC_57 Sale thêm tham số lọc để xem khách người khác", async ({}, testInfo) => {
+  test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
   const base = await scopeCheck("sale", "/customer/all?page=1&limit=50&app_code=vnfite");
   const probe = await scopeCheck("sale", "/customer/all?page=1&limit=50&app_code=vnfite&assigned_to=someone-else");
   const same = base.total === probe.total;
@@ -218,6 +230,7 @@ test("TC_57 Sale thêm tham số lọc để xem khách người khác", async (
 });
 
 test("TC_58 Team Lead chỉ thấy khách của nhóm", async ({}, testInfo) => {
+  test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
   const s = await scopeCheck("teamlead", "/customer/all?page=1&limit=50&app_code=vnfite");
   // Nhóm có khách thì danh sách phải lớn hơn 0 và nhỏ hơn toàn công ty
   const ok = s.status === 200 && s.total !== null && s.total > 0 && s.total < 19248;
@@ -225,23 +238,27 @@ test("TC_58 Team Lead chỉ thấy khách của nhóm", async ({}, testInfo) => 
 });
 
 test("TC_60 Sale Manager chỉ thấy khách toàn trung tâm", async ({}, testInfo) => {
+  test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
   const s = await scopeCheck("manager", "/customer/all?page=1&limit=50&app_code=vnfite");
   const ok = s.status === 200 && s.total !== null && s.total > 0 && s.total < 19248;
   await settle(testInfo, { case: "scope", role: "manager", ...s, note: "phải nhỏ hơn tổng 19.248 khách toàn công ty" }, ok ? "PASS" : "FAIL", null, "manager", "TC_60");
 });
 
 test("TC_62 Chủ tịch HĐQT thấy khách toàn công ty", async ({}, testInfo) => {
+  test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
   const s = await scopeCheck("exec", "/customer/all?page=1&limit=50&app_code=vnfite");
   const ok = s.status === 200 && s.total !== null && s.total > 19000;
   await settle(testInfo, { case: "scope", role: "exec", ...s }, ok ? "PASS" : "FAIL", null, "exec", "TC_62");
 });
 
 test("TC_63 Quản trị hệ thống không xem dữ liệu kinh doanh", async ({}, testInfo) => {
+  test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
   const s = await scopeCheck("admin", "/customer/all?page=1&limit=50&app_code=vnfite");
   await settle(testInfo, { case: "scope", role: "admin", ...s }, s.status === 403 ? "PASS" : "FAIL", null, "admin", "TC_63");
 });
 
 test("TC_67 Phạm vi áp dụng cho hoa hồng", async ({}, testInfo) => {
+  test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
   const res = await api("sale", "GET", "/investments/my-commission");
   const rows = (res.json && (res.json.data || res.json.results)) || [];
   const arr = Array.isArray(rows) ? rows : [];

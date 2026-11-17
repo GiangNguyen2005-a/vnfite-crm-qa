@@ -8,7 +8,9 @@ const fs = require("fs");
 const path = require("path");
 
 const MATRIX = require("./matrix.json");
-const TOKENS = require(path.join(__dirname, "qa_perm_tokens.json"));
+const { tokens } = require("./lib/env");
+// Thiếu tệp token thì trả {} — các tổ hợp bỏ qua thay vì làm hỏng bước liệt kê ca.
+const TOKENS = tokens();
 const OUT = path.join(__dirname, "results");
 const JSONL = path.join(OUT, "perm-results.jsonl");
 
@@ -27,7 +29,8 @@ for (const role of MATRIX.roles) {
   for (const screen of MATRIX.screens) {
     const expected = MATRIX.expected[screen.key][role.key];
     test(`${role.key} | ${screen.key} | mong doi ${expected ? "duoc phep" : "bi chan"}`, async ({ page }, testInfo) => {
-      const token = TOKENS[role.key].token;
+      test.skip(!Object.keys(TOKENS).length, "Chưa có qa_perm_tokens.json — bỏ qua bộ phân quyền");
+      const token = (TOKENS[role.key] || {}).token;
       const api403 = [];
       const api4xx = [];
       page.on("response", (res) => {

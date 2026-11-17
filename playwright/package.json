@@ -1,10 +1,20 @@
 {
-  "name": "qa-perm",
+  "name": "vnfite-crm-qa",
   "version": "1.0.0",
-  "description": "",
-  "main": "permission.spec.js",
+  "description": "Bộ kiểm thử tự động cho hệ thống CRM VNFITE: phân quyền, hợp đồng API, phạm vi dữ liệu, độ bền, đăng nhập, hiển thị, khả năng tiếp cận",
+  "main": "perm.spec.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "list": "playwright test --list",
+    "test": "playwright test --project=chrome",
+    "test:perm": "playwright test perm.spec.js permission.spec.js --project=chrome",
+    "test:contract": "playwright test api-contract.spec.js --project=chrome",
+    "test:customers": "playwright test customers-api.spec.js --project=chrome",
+    "test:scope": "playwright test scope.spec.js --project=chrome",
+    "test:robust": "playwright test robustness.spec.js --project=chrome",
+    "test:auth": "playwright test auth.spec.js --project=chrome",
+    "test:ui": "playwright test ui-pages.spec.js --project=chrome",
+    "test:a11y": "playwright test a11y.spec.js --project=chrome",
+    "report": "playwright show-report results/html"
   },
   "keywords": [],
   "author": "",

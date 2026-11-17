@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "note": "Các đầu vào sai hoặc biên. Kỳ vọng chung: không bao giờ trả 500 và không trả dữ liệu khi tham số vô nghĩa. Giá trị dạng {\"__repeat\": [\"a\", 500]} được bộ chạy bung thành chuỗi 500 ký tự.",
+    "allowStatus": "Mỗi ca khai báo danh sách mã chấp nhận được; rơi ngoài danh sách là không đạt."
+  },
+  "cases": [
+    { "id": "RB-01", "name": "page = 0", "query": { "page": 0, "limit": 20 }, "allow": [200, 400], "mustNot": [500], "note": "Trang 0 không hợp lệ; hoặc trả 400, hoặc quy về trang 1. Cả hai đều chấp nhận, miễn không lỗi máy chủ." },
+    { "id": "RB-02", "name": "page âm", "query": { "page": -5, "limit": 20 }, "allow": [200, 400], "mustNot": [500] },
+    { "id": "RB-03", "name": "limit = 0", "query": { "page": 1, "limit": 0 }, "allow": [200, 400], "mustNot": [500], "note": "Nếu trả 200 thì phải trả về mảng rỗng hoặc áp mức mặc định, không trả toàn bộ dữ liệu." },
+    { "id": "RB-04", "name": "limit âm", "query": { "page": 1, "limit": -1 }, "allow": [200, 400], "mustNot": [500] },
+    { "id": "RB-05", "name": "limit rất lớn", "query": { "page": 1, "limit": 100000 }, "allow": [200, 400], "mustNot": [500], "note": "Ca hiệu năng gián tiếp: nếu chấp nhận thì thời gian phản hồi không được vượt 20 giây." },
+    { "id": "RB-06", "name": "page là chuỗi", "query": { "page": "abc", "limit": 20 }, "allow": [200, 400], "mustNot": [500] },
+    { "id": "RB-07", "name": "page vượt tổng số trang", "query": { "page": 99999, "limit": 20 }, "allow": [200, 400], "mustNot": [500], "note": "Trả 200 kèm mảng rỗng là hành vi chấp nhận được." },
+    { "id": "RB-08", "name": "search rỗng", "query": { "page": 1, "limit": 20, "search": "" }, "allow": [200, 400], "mustNot": [500] },
+    { "id": "RB-09", "name": "search chứa ký tự đặc biệt", "query": { "page": 1, "limit": 20, "search": "'; DROP TABLE--" }, "allow": [200, 400], "mustNot": [500], "note": "Chỉ kiểm hệ thống không sập. Bộ kiểm thử này không kết luận về lỗ hổng chèn mã." },
+    { "id": "RB-10", "name": "search chuỗi rất dài", "query": { "page": 1, "limit": 20, "search": { "__repeat": ["a", 500] } }, "allow": [200, 400, 414], "mustNot": [500] },
+    { "id": "RB-11", "name": "status không tồn tại", "query": { "page": 1, "limit": 20, "status": "khong-ton-tai" }, "allow": [200, 400], "mustNot": [500], "note": "Nếu trả 200 thì mảng phải rỗng, không được bỏ qua bộ lọc." },
+    { "id": "RB-12", "name": "app_code sai", "query": { "page": 1, "limit": 20, "app_code": "sai-app" }, "allow": [200, 400, 403], "mustNot": [500] }
+  ]
+}
