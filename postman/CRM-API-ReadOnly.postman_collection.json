@@ -1,0 +1,160 @@
+{
+  "info": {
+    "name": "VNFITE CRM — API regression (read-only)",
+    "_postman_id": "qa-khoaluan-0001",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:2345" }
+  ],
+  "item": [
+    {
+      "name": "TC-API-01 Đăng nhập",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"username\":\"{{username}}\",\"password\":\"{{password}}\"}" },
+        "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+      },
+      "event": [
+        { "listen": "test", "script": { "exec": [
+          "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+          "pm.test('có accessToken', () => pm.expect(pm.response.json()).to.have.property('accessToken'));",
+          "pm.test('thời gian < 3000ms', () => pm.expect(pm.response.responseTime).to.be.below(3000));",
+          "pm.collectionVariables.set('token', pm.response.json().accessToken);"
+        ] } }
+      ]
+    },
+    {
+      "name": "TC-API-02 Thông tin người dùng",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "{{baseUrl}}/user/getUserInfo", "host": ["{{baseUrl}}"], "path": ["user", "getUserInfo"] }
+      },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+        "pm.test('trả về username', () => pm.expect(JSON.stringify(pm.response.json())).to.include('admin'));"
+      ] } }]
+    },
+    {
+      "name": "TC-API-03 Quyền của tài khoản",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "{{baseUrl}}/permissions/me", "host": ["{{baseUrl}}"], "path": ["permissions", "me"] }
+      },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+        "pm.test('thời gian < 2000ms', () => pm.expect(pm.response.responseTime).to.be.below(2000));"
+      ] } }]
+    },
+    {
+      "name": "TC-API-04 Danh sách chi nhánh",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "{{baseUrl}}/branch/getAll", "host": ["{{baseUrl}}"], "path": ["branch", "getAll"] }
+      },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+        "pm.test('có dữ liệu chi nhánh', () => pm.expect(pm.response.json().data.length).to.be.above(0));"
+      ] } }]
+    },
+    {
+      "name": "TC-API-05 Danh sách khách hàng — trang 1",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "{{baseUrl}}/customer/all?page=1&limit=20&app_code=vnfite", "host": ["{{baseUrl}}"], "path": ["customer", "all"], "query": [
+          { "key": "page", "value": "1" }, { "key": "limit", "value": "20" }, { "key": "app_code", "value": "vnfite" }
+        ] }
+      },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+        "pm.test('đúng 20 bản ghi', () => pm.expect(pm.response.json().data.length).to.eql(20));",
+        "pm.test('có tổng số bản ghi', () => pm.expect(pm.response.json().pagination.total).to.be.above(1000));",
+        "pm.test('thời gian < 3000ms', () => pm.expect(pm.response.responseTime).to.be.below(3000));"
+      ] } }]
+    },
+    {
+      "name": "TC-API-06 Tìm khách hàng theo số điện thoại",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "{{baseUrl}}/customer/all?page=1&limit=20&app_code=vnfite&search=0342693675", "host": ["{{baseUrl}}"], "path": ["customer", "all"], "query": [
+          { "key": "page", "value": "1" }, { "key": "limit", "value": "20" }, { "key": "app_code", "value": "vnfite" }, { "key": "search", "value": "0342693675" }
+        ] }
+      },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+        "pm.test('tìm đúng 1 khách hàng', () => pm.expect(pm.response.json().pagination.total).to.eql(1));",
+        "pm.test('đúng số điện thoại', () => pm.expect(pm.response.json().data[0].phone_number).to.eql('0342693675'));"
+      ] } }]
+    },
+    {
+      "name": "TC-API-07 Lọc theo trạng thái registered",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "{{baseUrl}}/customer/all?page=1&limit=20&app_code=vnfite&status=registered", "host": ["{{baseUrl}}"], "path": ["customer", "all"], "query": [
+          { "key": "page", "value": "1" }, { "key": "limit", "value": "20" }, { "key": "app_code", "value": "vnfite" }, { "key": "status", "value": "registered" }
+        ] }
+      },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+        "pm.test('lọc trả về ít hơn tổng', () => pm.expect(pm.response.json().pagination.total).to.be.below(30000));",
+        "pm.test('mọi bản ghi đúng trạng thái', () => pm.expect(pm.response.json().data.every(c => c.status === 'registered')).to.be.true);"
+      ] } }]
+    },
+    {
+      "name": "TC-API-08 Danh sách nhân sự CRM",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "{{baseUrl}}/user/getUsers?limit=200&module=crm&page=1", "host": ["{{baseUrl}}"], "path": ["user", "getUsers"], "query": [
+          { "key": "limit", "value": "200" }, { "key": "module", "value": "crm" }, { "key": "page", "value": "1" }
+        ] }
+      },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+        "pm.test('có nhân sự', () => pm.expect(pm.response.json().data.length).to.be.above(0));"
+      ] } }]
+    },
+    {
+      "name": "TC-API-09 Số thông báo chưa đọc",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "{{baseUrl}}/notification/unread-count", "host": ["{{baseUrl}}"], "path": ["notification", "unread-count"] }
+      },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+        "pm.test('thời gian < 1000ms', () => pm.expect(pm.response.responseTime).to.be.below(1000));"
+      ] } }]
+    },
+    {
+      "name": "TC-API-10 Từ chối khi không có token",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/customer/all?page=1&limit=5", "host": ["{{baseUrl}}"], "path": ["customer", "all"], "query": [
+          { "key": "page", "value": "1" }, { "key": "limit", "value": "5" }
+        ] }
+      },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('bị từ chối (401/403)', () => pm.expect([401,403]).to.include(pm.response.code));"
+      ] } }]
+    },
+    {
+      "name": "TC-API-11 Endpoint không tồn tại trả 404",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "{{baseUrl}}/customer-call/sip-credentials", "host": ["{{baseUrl}}"], "path": ["customer-call", "sip-credentials"] }
+      },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('HTTP 404 (lỗi đã biết)', () => pm.response.to.have.status(404));"
+      ] } }]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "baseUrl": "http://localhost:5173",
+  "customerId": "082a18e5-f6a2-475c-b499-6f01fab64bc5",
+  "screens": [
+    { "key": "dashboard", "name": "Tổng quan", "path": "/dashboard", "menu": "Tổng thể", "doc": true },
+    { "key": "customers", "name": "Khách hàng (Gọi vốn)", "path": "/khach-hang", "menu": "Gọi vốn", "doc": true },
+    { "key": "customer_detail", "name": "Chi tiết khách hàng", "path": "/khach-hang/__CID__", "menu": null, "doc": true },
+    { "key": "my_customers", "name": "Khách hàng của tôi", "path": "/cskh/khach-hang-cua-toi", "menu": "Khách hàng của tôi", "doc": true },
+    { "key": "cskh_receive", "name": "CSKH - Nhận khách", "path": "/cskh/nhan-khach-hang", "menu": null, "doc": true },
+    { "key": "claim_requests", "name": "Yêu cầu nhận khách", "path": "/yeu-cau-nhan-khach", "menu": "Yêu cầu nhận khách", "doc": true },
+    { "key": "calls", "name": "Gọi điện tư vấn", "path": "/goi-dien", "menu": "Gọi điện Tư vấn", "doc": true },
+    { "key": "commission", "name": "Hoa hồng", "path": "/hoa-hong", "menu": "Hoa hồng", "doc": true },
+    { "key": "investment", "name": "Đầu tư", "path": "/dau-tu", "menu": "Đầu tư", "doc": true },
+    { "key": "investment_flow", "name": "Biến động đầu tư", "path": "/bien-dong-dau-tu", "menu": "Biến động đầu tư", "doc": true },
+    { "key": "agents", "name": "Đại lý", "path": "/dai-ly", "menu": "Đại lý", "doc": false },
+    { "key": "sip_sync", "name": "Đồng bộ SIP", "path": "/dong-bo-sip", "menu": "Đồng bộ SIP", "doc": true },
+    { "key": "hotline", "name": "Quản lý tổng đài", "path": "/tong-dai", "menu": "Tổng đài", "doc": true },
+    { "key": "internal_groups", "name": "Nhóm nội bộ", "path": "/nhom-noi-bo", "menu": "Nhóm nội bộ", "doc": false }
+  ],
+  "roles": [
+    { "key": "admin", "name": "Quản trị hệ thống" },
+    { "key": "sale", "name": "Sale" },
+    { "key": "teamlead", "name": "Team Lead" },
+    { "key": "manager", "name": "Sale Manager" },
+    { "key": "exec", "name": "Chủ tịch HĐQT" }
+  ],
+  "expected": {
+    "dashboard":        { "sale": true,  "teamlead": true,  "manager": true,  "exec": true,  "admin": true },
+    "customers":        { "sale": true,  "teamlead": true,  "manager": true,  "exec": true,  "admin": false },
+    "customer_detail":  { "sale": true,  "teamlead": true,  "manager": true,  "exec": true,  "admin": false },
+    "my_customers":     { "sale": true,  "teamlead": true,  "manager": true,  "exec": true,  "admin": false },
+    "cskh_receive":     { "sale": true,  "teamlead": true,  "manager": true,  "exec": false, "admin": false },
+    "claim_requests":   { "sale": true,  "teamlead": true,  "manager": true,  "exec": false, "admin": false },
+    "calls":            { "sale": true,  "teamlead": true,  "manager": true,  "exec": false, "admin": false },
+    "commission":       { "sale": true,  "teamlead": true,  "manager": true,  "exec": true,  "admin": false },
+    "investment":       { "sale": true,  "teamlead": true,  "manager": true,  "exec": true,  "admin": false },
+    "investment_flow":  { "sale": true,  "teamlead": true,  "manager": true,  "exec": true,  "admin": false },
+    "agents":           { "sale": true,  "teamlead": true,  "manager": true,  "exec": true,  "admin": true },
+    "sip_sync":         { "sale": false, "teamlead": false, "manager": false, "exec": false, "admin": true },
+    "hotline":          { "sale": false, "teamlead": false, "manager": false, "exec": false, "admin": true },
+    "internal_groups":  { "sale": true,  "teamlead": true,  "manager": true,  "exec": true,  "admin": true }
+  }
+}

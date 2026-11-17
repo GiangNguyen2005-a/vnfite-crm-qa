@@ -1,0 +1,174 @@
+[
+  {
+    "id": "dashboard",
+    "name": "Dashboard điều hành",
+    "url": "/dashboard",
+    "finalUrl": "http://127.0.0.1:5173/dashboard",
+    "loggedOut": false,
+    "paintMs": 414,
+    "totalMs": 2053,
+    "dataReady": true,
+    "rows": 20,
+    "apiCalls": 16,
+    "failedCalls": [
+      "404 /customer-call/sip-credentials"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "textHead": "Customer Relationship Management VNFITE Trang chủ Customer Relationship Management 0 Q Tổng quan Tổng thể Theo vai trò Khách hàng CSKH & Call Center Đội ngũ & Đối tác Hoa hồng Báo cáo & Phân tích Chào buổi chiều, anh thống!! Sunday, 08/11/2026 · Quản Lý CRM Dashboard điều hành CRM Theo dõi chuyển đổ"
+  },
+  {
+    "id": "khach-hang",
+    "name": "Danh sách khách hàng",
+    "url": "/khach-hang",
+    "finalUrl": "http://127.0.0.1:5173/khach-hang",
+    "loggedOut": false,
+    "paintMs": 413,
+    "totalMs": 7547,
+    "dataReady": true,
+    "rows": 20,
+    "apiCalls": 7,
+    "failedCalls": [
+      "404 /customer-call/sip-credentials"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "textHead": "Customer Relationship Management VNFITE Trang chủ > Khách hàng Customer Relationship Management 0 Q Tổng quan Khách hàng CSKH & Call Center Đội ngũ & Đối tác Hoa hồng Báo cáo & Phân tích Quản lý khách hàng Quản lý thông tin và hoạt động khách hàng ​ ​ Phễu trạng thái Phễu trạng thái Hành vi Hành vi "
+  },
+  {
+    "id": "nhan-khach",
+    "name": "Nhận khách hàng",
+    "url": "/cskh/nhan-khach-hang",
+    "finalUrl": "http://127.0.0.1:5173/cskh/nhan-khach-hang",
+    "loggedOut": false,
+    "paintMs": 380,
+    "totalMs": 21898,
+    "dataReady": false,
+    "rows": 0,
+    "apiCalls": 5,
+    "failedCalls": [
+      "404 /customer-call/sip-credentials"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "textHead": "Customer Relationship Management VNFITE Trang chủ > CSKH - Nhận khách Customer Relationship Management 0 Q Tổng quan Khách hàng CSKH & Call Center Đội ngũ & Đối tác Hoa hồng Báo cáo & Phân tích Chăm sóc khách hàng Quản lý danh sách chăm sóc khách hàng trong hệ thống Tạo lịch nhận CSKH Số điện thoại "
+  },
+  {
+    "id": "khach-cua-toi",
+    "name": "Khách hàng của tôi",
+    "url": "/cskh/khach-hang-cua-toi",
+    "finalUrl": "http://127.0.0.1:5173/cskh/khach-hang-cua-toi",
+    "loggedOut": false,
+    "paintMs": 422,
+    "totalMs": 2037,
+    "dataReady": true,
+    "rows": 1,
+    "apiCalls": 5,
+    "failedCalls": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "textHead": "Customer Relationship Management VNFITE Trang chủ > Khách hàng của tôi Customer Relationship Management 0 Q Tổng quan Khách hàng CSKH & Call Center Đội ngũ & Đối tác Hoa hồng Báo cáo & Phân tích Khách hàng của tôi Quản lý danh sách khách hàng bạn đang phụ trách ​ ​ Trạng thái Tất cả trạng thái Trạng"
+  },
+  {
+    "id": "goi-dien",
+    "name": "Gọi điện",
+    "url": "/goi-dien",
+    "finalUrl": "http://127.0.0.1:5173/goi-dien",
+    "loggedOut": false,
+    "paintMs": 384,
+    "totalMs": 1997,
+    "dataReady": true,
+    "rows": 0,
+    "apiCalls": 6,
+    "failedCalls": [
+      "404 /customer-call/sip-credentials",
+      "404 /customer-call/sip-credentials"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "textHead": "Customer Relationship Management VNFITE Trang chủ > Gọi điện Customer Relationship Management 0 Q Tổng quan Khách hàng CSKH & Call Center Đội ngũ & Đối tác Hoa hồng Báo cáo & Phân tích Danh sách khách hàng Lịch sử cuộc gọi DANH SÁCH KHÁCH HÀNG CẦN GỌI ​ Trạng thái: Tất cả ​ Tình trạng: Tất cả ​ Lần "
+  },
+  {
+    "id": "hoa-hong",
+    "name": "Hoa hồng",
+    "url": "/hoa-hong",
+    "finalUrl": "http://127.0.0.1:5173/hoa-hong",
+    "loggedOut": false,
+    "paintMs": 379,
+    "totalMs": 1994,
+    "dataReady": true,
+    "rows": 0,
+    "apiCalls": 5,
+    "failedCalls": [
+      "404 /customer-call/sip-credentials"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "textHead": "Customer Relationship Management VNFITE Trang chủ > Hoa hồng Customer Relationship Management 0 Q Tổng quan Khách hàng CSKH & Call Center Đội ngũ & Đối tác Hoa hồng Báo cáo & Phân tích Thu nhập & Hoa hồng Kỳ đối soát: Tháng 11/2026 Tháng 11 ​ 2026 ​ Của Tôi Nhân Viên Tổng hoa hồng ghi nhận — Tháng 1"
+  },
+  {
+    "id": "yeu-cau-nhan-khach",
+    "name": "Yêu cầu nhận khách",
+    "url": "/yeu-cau-nhan-khach",
+    "finalUrl": "http://127.0.0.1:5173/yeu-cau-nhan-khach",
+    "loggedOut": false,
+    "paintMs": 373,
+    "totalMs": 1986,
+    "dataReady": true,
+    "rows": 0,
+    "apiCalls": 4,
+    "failedCalls": [
+      "404 /customer-call/sip-credentials"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "textHead": "Customer Relationship Management VNFITE Trang chủ > Yêu cầu nhận khách Customer Relationship Management 0 Q Tổng quan Khách hàng CSKH & Call Center Đội ngũ & Đối tác Hoa hồng Báo cáo & Phân tích Yêu cầu nhận khách hàng Gửi & xét duyệt yêu cầu nhận khách hàng Gửi Yêu Cầu Yêu Cầu Của Tôi Duyệt Yêu Cầu"
+  },
+  {
+    "id": "tong-dai",
+    "name": "Cấu hình tổng đài",
+    "url": "/tong-dai",
+    "finalUrl": "http://127.0.0.1:5173/tong-dai",
+    "loggedOut": false,
+    "paintMs": 378,
+    "totalMs": 1998,
+    "dataReady": true,
+    "rows": 0,
+    "apiCalls": 6,
+    "failedCalls": [
+      "404 /customer-call/sip-credentials"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "textHead": "Customer Relationship Management VNFITE Trang chủ > Tổng đài Customer Relationship Management 0 Q Tổng quan Khách hàng CSKH & Call Center Đội ngũ & Đối tác Hoa hồng Báo cáo & Phân tích Quản lý Đầu số Hotline 12 đầu số ​ 1900088883 ACTIVE Gọi vào: Bật Gọi ra: Tắt Kịch bản Chuyển tiếp tới 108 Hết hạn "
+  },
+  {
+    "id": "kpi",
+    "name": "Quản lý KPI",
+    "url": "/hrm/quan-ly-kpi",
+    "finalUrl": "http://127.0.0.1:5173/hrm/quan-ly-kpi",
+    "loggedOut": false,
+    "paintMs": 360,
+    "totalMs": 1965,
+    "dataReady": true,
+    "rows": 0,
+    "apiCalls": 4,
+    "failedCalls": [
+      "404 /customer-call/sip-credentials"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "textHead": "Human Resource Management Trang chủ > Quản lý KPI Human Resource Management 0 Q Tổng quan Quản lý nhân sự Chấm công Quản lý hiệu suất Quản lý KPI Cá nhân Cài đặt hệ thống Quản lý KPI đang được phát triển Chúng tôi đang xây dựng tính năng này. Vui lòng quay lại sau."
+  }
+]

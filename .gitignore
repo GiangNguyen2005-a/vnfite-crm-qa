@@ -1,0 +1,31 @@
+# Node
+node_modules/
+package-lock.json.bak
+
+# Playwright
+playwright-report/
+blob-report/
+test-results/
+trace.zip
+*.har
+
+# Kết quả chạy cục bộ
+jmeter/html/
+*.jtl.tmp
+jmeter.log
+result.tmp
+
+# Thông tin đăng nhập và cấu hình thật
+.env
+.env.*
+auth.json
+qa_perm_tokens.json
+accounts.json
+**/storage-state.json
+cookies*.json
+
+# Hệ điều hành và trình soạn thảo
+.DS_Store
+.vscode/
+.idea/
+*.log

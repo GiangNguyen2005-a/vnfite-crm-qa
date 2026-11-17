@@ -1,0 +1,391 @@
+[
+ {
+  "case": "menu",
+  "role": "teamlead",
+  "must": [
+   "Khách hàng của tôi",
+   "Gọi điện",
+   "Đầu tư",
+   "Hoa hồng"
+  ],
+  "mustNot": [
+   "Phân quyền",
+   "Cấu hình tổng đài"
+  ],
+  "missing": [],
+  "leaking": [],
+  "menuSample": " Customer Relationship ManagementVNFITETrang chủCustomer Relationship Management0TCRMTổng quanTổng thểTheo vai tròKhách hàngĐầu tưKhách hàng của tôiCSKH & Call CenterGọi điện Tư vấnTicket hỗ trợĐội ngũ & Đối tácSale nội bộHoa hồngCấu trúc hoa hồngTổng hợp (Kỳ)Báo cáo & Phân tíchTỷ lệ chuyển đổiHiệu suất đội ngũHoa hồngCSKHChào buổi tối, chị Thảo!!Monday, 09/11/2026 · Nhân viên CRMMã QR Giới ThiệuT",
+  "tc": "TC_16",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:18:29.817Z"
+ },
+ {
+  "case": "menu",
+  "role": "sale",
+  "must": [
+   "Khách hàng của tôi",
+   "Gọi điện",
+   "Yêu cầu nhận khách",
+   "Đầu tư",
+   "Hoa hồng"
+  ],
+  "mustNot": [
+   "Gọi vốn",
+   "CTV & Đại lý",
+   "Phân quyền",
+   "Cấu hình tổng đài"
+  ],
+  "missing": [],
+  "leaking": [],
+  "menuSample": " Customer Relationship ManagementVNFITETrang chủCustomer Relationship Management0VCRMTổng quanTổng thểTheo vai tròKhách hàngĐầu tưBiến động đầu tưKhách hàng của tôiYêu cầu nhận kháchCSKH & Call CenterGọi điện Tư vấnTicket hỗ trợĐội ngũ & Đối tácSale nội bộHoa hồngCấu trúc hoa hồngDự kiến (Giao dịch)Tổng hợp (Kỳ)Báo cáo & Phân tíchTỷ lệ chuyển đổiHiệu suất đội ngũHoa hồngCSKHChào buổi tối, anh Vinh",
+  "tc": "TC_15",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:18:29.919Z"
+ },
+ {
+  "case": "menu",
+  "role": "manager",
+  "must": [
+   "Khách hàng",
+   "Gọi vốn",
+   "CTV & Đại lý",
+   "Yêu cầu nhận khách",
+   "Hoa hồng"
+  ],
+  "mustNot": [
+   "Phân quyền hệ thống"
+  ],
+  "missing": [],
+  "leaking": [],
+  "menuSample": " Customer Relationship ManagementVNFITETrang chủCustomer Relationship Management0NCRMTổng quanTổng thểTheo vai tròKhách hàngGọi vốnĐầu tưBiến động đầu tưKhách hàng của tôiYêu cầu nhận kháchCSKH & Call CenterGọi điện Tư vấnTicket hỗ trợĐội ngũ & Đối tácSale nội bộCTV & Đại lýHoa hồngCấu trúc hoa hồngDự kiến (Giao dịch)Tổng hợp (Kỳ)Báo cáo & Phân tíchTỷ lệ chuyển đổiHiệu suất đội ngũHoa hồngCSKHChào",
+  "tc": "TC_17",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:18:36.268Z"
+ },
+ {
+  "case": "menu",
+  "role": "exec",
+  "must": [
+   "Khách hàng",
+   "Đầu tư",
+   "Hoa hồng"
+  ],
+  "mustNot": [
+   "Phân quyền"
+  ],
+  "missing": [],
+  "leaking": [],
+  "menuSample": " Customer Relationship ManagementVNFITETrang chủCustomer Relationship Management99+BCRMTổng quanTổng thểTheo vai tròKhách hàngĐầu tưBiến động đầu tưCSKH & Call CenterTicket hỗ trợĐội ngũ & Đối tácSale nội bộHoa hồngCấu trúc hoa hồngDự kiến (Giao dịch)Tổng hợp (Kỳ)Báo cáo & Phân tíchTỷ lệ chuyển đổiHiệu suất đội ngũHoa hồngCSKHChào buổi tối, chị Hương!!Monday, 09/11/2026 · Nhân viên CRMMã QR Giới T",
+  "tc": "TC_18",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:18:36.104Z"
+ },
+ {
+  "case": "menu",
+  "role": "admin",
+  "must": [
+   "Phân quyền",
+   "Tổng đài",
+   "Nhóm nội bộ"
+  ],
+  "mustNot": [
+   "Khách hàng của tôi",
+   "CTV & Đại lý",
+   "Gọi vốn"
+  ],
+  "missing": [],
+  "leaking": [],
+  "menuSample": " Customer Relationship ManagementVNFITETrang chủ>Tổng đàiCustomer Relationship Management21MCRMTổng quanKhách hàngCSKH & Call CenterGọi điện Tư vấnTicket hỗ trợPhân quyềnTổng đàiNhóm nội bộĐội ngũ & Đối tácHoa hồngBáo cáo & Phân tíchQuản lý Đầu số Hotline12 đầu số​1900088883ACTIVEGọi vào: BậtGọi ra: TắtKịch bảnChuyển tiếp tới 108Hết hạn31/10/2027Quyền--Cấu Hình842871045949ACTIVEGọi vào: BậtGọi ra:",
+  "tc": "TC_19",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:18:43.062Z"
+ },
+ {
+  "case": "direct_url",
+  "role": "sale",
+  "redirected": false,
+  "blocked": false,
+  "httpStatus": 200,
+  "rows": 1,
+  "foreign": 0,
+  "tc": "TC_26",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:18:44.117Z"
+ },
+ {
+  "case": "direct_url",
+  "role": "sale",
+  "url": "/dai-ly",
+  "redirected": false,
+  "blocked": false,
+  "tc": "TC_27",
+  "verdict": "FAIL",
+  "browser": "chrome",
+  "at": "2026-11-09T14:18:50.548Z"
+ },
+ {
+  "case": "direct_url",
+  "role": "admin",
+  "apiStatus": 200,
+  "blocked": false,
+  "tc": "TC_33",
+  "verdict": "FAIL",
+  "browser": "chrome",
+  "at": "2026-11-09T14:18:55.699Z"
+ },
+ {
+  "case": "direct_url",
+  "role": "sale",
+  "customer": "082a18e5-f6a2-475c-b499-6f01fab64bc5",
+  "blocked": false,
+  "redirected": false,
+  "dataShown": false,
+  "phoneMasked": "034***75",
+  "bodySample": " Customer Relationship ManagementVNFITETrang chủ>Khách hàng>Chi tiết khách hàngCustomer Relationship Management0VCRMTổng quanKhách hàngCSKH & Call CenterĐội ngũ",
+  "tc": "TC_36",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:03.194Z"
+ },
+ {
+  "case": "direct_url",
+  "role": "sale",
+  "hasMessage": true,
+  "crashed": false,
+  "len": 221,
+  "tc": "TC_37",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:03.810Z"
+ },
+ {
+  "case": "api",
+  "role": "sale",
+  "method": "GET",
+  "url": "/customer/all?page=1&limit=1&app_code=vnfite",
+  "status": 401,
+  "expect": [
+   401
+  ],
+  "message": "Không có access token",
+  "tc": "TC_11",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:04.002Z"
+ },
+ {
+  "case": "api",
+  "role": "sale",
+  "method": "GET",
+  "url": "/customer/all?page=1&limit=1&app_code=vnfite",
+  "status": 401,
+  "expect": [
+   401
+  ],
+  "message": "Token không hợp lệ",
+  "tc": "TC_12",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:04.228Z"
+ },
+ {
+  "case": "api",
+  "role": "exec",
+  "method": "POST",
+  "url": "/customer/{id}/assign",
+  "status": 403,
+  "expect": [
+   403
+  ],
+  "message": "Bạn không có quyền thực hiện thao tác này",
+  "tc": "TC_24",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:04.931Z"
+ },
+ {
+  "case": "api",
+  "role": "sale",
+  "method": "POST",
+  "url": "/customer/{id}/assign",
+  "status": 403,
+  "expect": [
+   403
+  ],
+  "message": "Bạn không có quyền thực hiện thao tác này",
+  "tc": "TC_39",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:05.186Z"
+ },
+ {
+  "case": "api",
+  "role": "sale",
+  "method": "GET",
+  "url": "/rbac/roles",
+  "status": 403,
+  "expect": [
+   403
+  ],
+  "message": "Chỉ admin mới được phép thực hiện thao tác này",
+  "tc": "TC_50",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:05.516Z"
+ },
+ {
+  "case": "api",
+  "role": "sale",
+  "method": "POST",
+  "url": "/rbac/roles/CRM_SALE/permissions",
+  "status": 403,
+  "expect": [
+   403
+  ],
+  "message": "Chỉ admin mới được phép thực hiện thao tác này",
+  "tc": "TC_51",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:05.742Z"
+ },
+ {
+  "case": "api",
+  "role": "sale",
+  "method": "POST",
+  "url": "/rbac/users/65f000000000000000000001/roles",
+  "status": 403,
+  "expect": [
+   403
+  ],
+  "message": "Chỉ admin mới được phép thực hiện thao tác này",
+  "tc": "TC_52",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:06.048Z"
+ },
+ {
+  "case": "api",
+  "role": "admin",
+  "method": "POST",
+  "url": "/rbac/roles/abc/permissions",
+  "status": 404,
+  "expect": [
+   400,
+   404
+  ],
+  "message": "Không tìm thấy role",
+  "tc": "TC_53",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:06.411Z"
+ },
+ {
+  "case": "scope",
+  "role": "sale",
+  "status": 200,
+  "total": 1,
+  "rows": 1,
+  "owners": [
+   ""
+  ],
+  "note": "toàn bộ bản ghi phải thuộc Sale đăng nhập",
+  "tc": "TC_55",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:06.620Z"
+ },
+ {
+  "case": "scope",
+  "role": "sale",
+  "baseTotal": 1,
+  "probeTotal": 1,
+  "status": 200,
+  "same": true,
+  "tc": "TC_57",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:07.003Z"
+ },
+ {
+  "case": "scope",
+  "role": "teamlead",
+  "status": 200,
+  "total": 0,
+  "rows": 0,
+  "owners": [],
+  "tc": "TC_58",
+  "verdict": "FAIL",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:07.221Z"
+ },
+ {
+  "case": "direct_url",
+  "role": "sale",
+  "url": "/abc-xyz",
+  "notFound": false,
+  "redirected": false,
+  "maintenance": true,
+  "tc": "TC_38",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:10.453Z"
+ },
+ {
+  "case": "scope",
+  "role": "exec",
+  "status": 403,
+  "total": null,
+  "rows": 0,
+  "owners": [],
+  "tc": "TC_62",
+  "verdict": "FAIL",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:10.629Z"
+ },
+ {
+  "case": "scope",
+  "role": "manager",
+  "status": 200,
+  "total": 19248,
+  "rows": 50,
+  "owners": [
+   ""
+  ],
+  "note": "phải nhỏ hơn tổng 19.248 khách toàn công ty",
+  "tc": "TC_60",
+  "verdict": "FAIL",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:11.327Z"
+ },
+ {
+  "case": "scope",
+  "role": "sale",
+  "status": 200,
+  "n": 0,
+  "foreign": 0,
+  "tc": "TC_67",
+  "verdict": "PASS",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:11.760Z"
+ },
+ {
+  "case": "scope",
+  "role": "admin",
+  "status": 200,
+  "total": 19248,
+  "rows": 50,
+  "owners": [
+   ""
+  ],
+  "tc": "TC_63",
+  "verdict": "FAIL",
+  "browser": "chrome",
+  "at": "2026-11-09T14:19:15.009Z"
+ }
+]
